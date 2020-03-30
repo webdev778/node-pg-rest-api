@@ -122,9 +122,14 @@ async function priceCreate(req, resp) {
 async function priceDelete(req, resp) {
   const { pmId, priceId } = req.params;
 
+  let sql = "select id from pricing_price where pricing_id = $1 and price_id = $2";
+  let result = await db.query(sql, [pmId, priceId]);
+  if(result.rows.length === 0) 
+    return resp.status(404).send();
+
   // unlink price configuration
-  let sql = 'delete from pricing_price where pricing_id = $1 and price_id = $2';
-  const result = await db.query(sql, [pmId, priceId]);
+  sql = 'delete from pricing_price where pricing_id = $1 and price_id = $2';
+  result = await db.query(sql, [pmId, priceId]);
 
   resp.status(204).send();
 }

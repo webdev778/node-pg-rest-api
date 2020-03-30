@@ -1,9 +1,9 @@
 var router = require('express').Router(),
     machine = require('./model/machine');
 
-router.route('/:machine-id/prices').get(machine.mokeup);
+router.route('/:machineId/prices').get(machine.prices);
 
-router.route('/:machine-id/prices/:pm-id').put(machine.mokeup)
-                                          .delete(machine.mokeup);
+router.route('/:machineId/prices/:pmId').put(machine.setPriceModel)
+                                        .delete(machine.unsetPriceModel);
 
 module.exports = router;

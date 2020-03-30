@@ -1,7 +1,8 @@
 var app = require('../index.js'),
   chai = require('chai'),
   should = require('should'),
-  request = require('supertest');
+  request = require('supertest'),
+  db = require('../src/db');
 
 describe('GET /pricing-models', function() {
   it('responds with staic string', function(done) {
@@ -117,14 +118,46 @@ describe('POST /pricing-models/:pm-id/prices', function() {
 
 describe('DELETE /pricing-models/:pm-id/prices/:price-id', function() {
   it('normal', function(done) {
-  request(app)
-    .delete('/pricing-models/4/prices/1')
-    .set('Accept', 'application/json')
-    .expect(204)
-    .end(function(err, res) {
-      if (err) return done(err);
-      console.log(res.body);
-      done();
-    });
+    db.query("select pricing_id, price_id from pricing_price pp  order by id desc limit 1")
+      .then(function(result){
+        if(!result.rowCount) return done();
+
+        var pricing_id = result.rows[0].pricing_id,
+            price_id = result.rows[0].price_id;            
+        request(app)
+        .delete(`/pricing-models/${pricing_id}/prices/${price_id}`)
+        .set('Accept', 'application/json')
+        .expect(204)
+        .end(function(err, res) {
+          if (err) return done(err);
+          console.log(res.body);
+          done();
+        });
+      })
+      .catch(function(err){
+        console.log(err);
+      });
   });
+
+  it('responds with not found (Price Model)', function(done) {
+    request(app)
+      .delete('/pricing-models/9999/prices/1')
+      .set('Accept', 'application/json')
+      .expect(404)
+      .end(function(err, res) {
+        if (err) return done(err);
+        done();
+      });
+    });
+
+  it('responds with not found (Price Configuration)', function(done) {
+    request(app)
+      .delete('/pricing-models/4/prices/999')
+      .set('Accept', 'application/json')
+      .expect(404)
+      .end(function(err, res) {
+        if (err) return done(err);
+        done();
+      });
+    });    
 });
