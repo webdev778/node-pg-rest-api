@@ -2,7 +2,7 @@
   "name": "polycade_rest_api",
   "version": "1.0.0",
   "description": "challenge rest api ",
-  "main": "index.js",
+  "main": "./src/index.js",
   "author": "webdev778",
   "license": "MIT",
   "dependencies": {
@@ -20,6 +20,12 @@
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.0",
     "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "mocha": "^7.1.1",
     "should": "^13.2.3",
     "supertest": "^4.0.2"

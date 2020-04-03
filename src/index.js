@@ -1,15 +1,15 @@
-var express = require('express');
-var server = express();
-var db = require('./db');
-var bodyParser = require('body-parser');
+var express = require('express')
+var server = express()
 
-server.use(bodyParser.json());
+var bodyParser = require('body-parser')
 
-var router = require('./config/routes');
-server.use(router);
+server.use(bodyParser.json())
 
-server.listen(80, ()=>{
-    console.log('server started');
+var router = require('./config/routes')
+server.use(router)
+
+server.listen(80, () => {
+  console.log('server started')
 })
 
-module.exports = server;
+module.exports = server
