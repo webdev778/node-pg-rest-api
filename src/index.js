@@ -1,8 +1,15 @@
-var router = require('express').Router();
-var pricingModelsRouter = require('./pricingModels');
-var machinesRouter = require('./machines');
+var express = require('express');
+var server = express();
+var db = require('./db');
+var bodyParser = require('body-parser');
 
-router.use('/pricing-models', pricingModelsRouter);
-router.use('/machines', machinesRouter);
+server.use(bodyParser.json());
 
-module.exports=router;
+var router = require('./config/routes');
+server.use(router);
+
+server.listen(80, ()=>{
+    console.log('server started');
+})
+
+module.exports = server;

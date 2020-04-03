@@ -1,4 +1,4 @@
-var app = require("../index.js"),
+var app = require("../src/index.js"),
   chai = require("chai"),
   should = require("should"),
   request = require("supertest"),
