@@ -1,6 +1,7 @@
-var app = require('../src/index.js')
+var app = require('../../src/index.js')
+// eslint-disable-next-line no-unused-vars
+var should = require('should')
 // var chai = require('chai')
-// var should = require('should')
 var request = require('supertest')
 
 describe('GET /machines/:machine-id/prices', function () {
@@ -23,9 +24,9 @@ describe('GET /machines/:machine-id/prices', function () {
       .expect(200)
       .end(function (err, res) {
         if (err) return done(err)
-        console.log(res.body)
+        console.log(res.text)
         res.text.should.equal(
-          '{"default_pricing":[{"price":3,"value":10},{"price":5,"value":20},{"price":15,"value":60}]}'
+          '{"default_pricing":[{"id":"1","price":3,"name":"10 minutes","value":10},{"id":"2","price":5,"name":"20 minutes","value":20},{"id":"3","price":15,"name":"60 minutes","value":60}]}'
         )
         done()
       })

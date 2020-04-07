@@ -8,18 +8,26 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "pg": "^7.18.2"
+    "lodash": "^4.17.15",
+    "pg": "^7.18.2",
+    "pluralize": "^8.0.0"
   },
   "scripts": {
     "start": "nodemon --watch ./src --exec babel-node ./src/index.js",
-    "test": "nodemon -w ./ --exec mocha"
+    "watch:test": "mocha --recursive -w --require @babel/register",
+    "test": "mocha --recursive",
+    "coverage": "nyc npm run test"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.9.0",
+    "@babel/register": "^7.9.0",
+    "babel-eslint": "^10.1.0",
     "chai": "^4.2.0",
+    "core-js": "^3.6.4",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.20.2",
@@ -28,12 +36,22 @@
     "eslint-plugin-standard": "^4.0.1",
     "git-cz": "^4.3.1",
     "mocha": "^7.1.1",
+    "nyc": "^15.0.1",
     "should": "^13.2.3",
     "supertest": "^4.0.2"
   },
   "babel": {
     "presets": [
-      "@babel/preset-env"
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "usage",
+          "corejs": 3
+        }
+      ]
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
     ]
   }
 }

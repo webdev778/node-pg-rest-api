@@ -8,4 +8,10 @@ const pool = new Pool({
   port: 5432
 })
 
+const oldPoolQuery = pool.query
+pool.query = (...args) => {
+  console.log('QUERY:', args)
+  return oldPoolQuery.apply(pool, args)
+}
+
 module.exports = pool

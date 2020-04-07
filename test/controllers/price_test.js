@@ -1,8 +1,8 @@
-var app = require('../src/index.js')
+var app = require('../../src/index.js')
 // var chai = require('chai')
 // var should = require('should')
 var request = require('supertest')
-var db = require('../src/db')
+var db = require('../../src/db')
 
 describe('GET /pricing-models', function () {
   it('responds with staic string', function (done) {

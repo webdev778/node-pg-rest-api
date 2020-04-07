@@ -9,7 +9,7 @@ routes['/pricing-models'] = { get: priceCtrl.all, post: priceCtrl.create }
 routes['/pricing-models/:pmId'] = { get: priceCtrl.find, put: priceCtrl.update }
 routes['/pricing-models/:pmId/prices'] = { get: priceCtrl.prices, post: priceCtrl.priceCreate }
 routes['/pricing-models/:pmId/prices/:priceId'] = { delete: priceCtrl.priceDelete }
-routes['/machines/:machineId/prices'] = { get: machineCtrl.prices }
+routes['/machines/:machineId/prices'] = { get: machineCtrl.pricingModel }
 routes['/machines/:machineId/prices/:pmId'] = { put: machineCtrl.setPriceModel, delete: machineCtrl.unsetPriceModel }
 
 function routeMapping (rt, rs) {

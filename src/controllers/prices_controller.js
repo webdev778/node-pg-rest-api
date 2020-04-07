@@ -31,24 +31,22 @@ async function create (req, resp) {
 async function find (req, resp) {
   const { pmId } = req.params
 
-  const { rows: result } = await PricingModel.find(pmId)
-  const pricing = result[0]
+  const pm = await PricingModel.find(pmId)
 
   const { rows } = await PricingModel.prices(pmId)
-  resp.json({ ...pricing, pricing: rows })
+  resp.json({ ...pm, pricing: rows })
 }
 
 async function update (req, resp) {
   const { pmId } = req.params
   const { pricing } = req.body
 
-  await PricingModel.update(pmId, pricing.name)
+  await PricingModel.update(pmId, { name: pricing.name })
 
-  const { rows: result } = await PricingModel.find(pmId)
-  const _pricing = result[0]
+  const pm = await PricingModel.find(pmId)
   const { rows } = await PricingModel.prices(pmId)
 
-  resp.json({ ..._pricing, pricing: rows })
+  resp.json({ ...pm, pricing: rows })
 }
 
 async function prices (req, resp) {
@@ -70,9 +68,9 @@ async function priceDelete (req, resp) {
   const { pmId, priceId } = req.params
 
   const result = await PriceConfig.findBy({ pricingId: pmId, priceId })
-  if (result.rows.length === 0) { return resp.status(404).send() }
+  if (!result) { return resp.status(404).send() }
 
-  await PriceConfig.destroy(result.rows[0].id)
+  await PriceConfig.destroy(result.id)
   resp.status(204).send()
 }
 

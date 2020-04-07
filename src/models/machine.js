@@ -1,9 +1,8 @@
-// const db = require('../db');
-
-function test () {
-  return 0
+var BaseModel = require('./base_model')
+class Machine extends BaseModel {
+  // constructor () {
+  //   super('machines')
+  // }
 }
 
-module.exports = {
-  test
-}
+module.exports = Machine
