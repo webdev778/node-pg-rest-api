@@ -2,6 +2,7 @@
 var Machine = require('../models/machine')
 var PricingModel = require('../models/pricing_model')
 // const PricingModel = new PricingModelClass()
+var assert = require('assert')
 
 async function pricingModel (req, resp) {
   const { machineId } = req.params
@@ -19,9 +20,7 @@ async function pricingModel (req, resp) {
   }
 
   const pm = await PricingModel.find(pricingId)
-  if (!pm) {
-    return resp.status(500).send()
-  }
+  assert(!!pm, 'Server Error')
 
   result = await PricingModel.prices(pricingId)
 
