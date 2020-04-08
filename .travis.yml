@@ -11,5 +11,5 @@ before_install:
 before_script:
   - npm prune
 script:
-  -npm t
+  - npm t
 
