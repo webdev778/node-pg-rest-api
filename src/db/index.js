@@ -1,12 +1,10 @@
 var { Pool } = require('pg')
 
-const pool = new Pool({
-  user: 'postgres',
-  host: '10.10.10.194',
-  database: 'polycade',
-  password: '123123',
-  port: 5432
-})
+const pool = new Pool()
+
+pool.query('SELECT NOW()').then(res =>
+  console.log(`Database connected ${res.rows[0].now}`))
+  .catch(err => console.log(err.stack))
 
 const oldPoolQuery = pool.query
 pool.query = (...args) => {
