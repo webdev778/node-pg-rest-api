@@ -17,8 +17,9 @@ node_js:
 before_install:
   - npm i -g npm@^6.13.4
   - sudo sed -i 's/port = 5433/port = 5432/' /etc/postgresql/11/main/postgresql.conf
+  - sudo ls /etc/postgresql/
   - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
-  - sudo service postgresql restart 11
+  - sudo systemctl restart postgresql 11
 before_script:
   - psql -U postgres -c 'create database travis_ci_test;'
   - psql -U postgres -d travis_ci_test < polycade.dmp
