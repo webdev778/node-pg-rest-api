@@ -16,6 +16,7 @@ node_js:
   - 10.19.0
 before_install:
   - npm i -g npm@^6.13.4
+  - sudo systemctl stop postgresql
   - sudo sed -i 's/port = 5433/port = 5432/' /etc/postgresql/11/main/postgresql.conf
   - sudo ls /etc/postgresql/
   - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
