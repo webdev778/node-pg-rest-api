@@ -22,7 +22,7 @@ before_install:
   - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
   - sudo systemctl restart postgresql@11-main
   - ps -ef | grep postgres
-  - psql -U postgres -d travis_ci_test < polycade.dmp  
+  - psql -U postgres -d travis_ci_test < ./db/polycade.dmp  
 before_script:
   - npm prune
 script:
