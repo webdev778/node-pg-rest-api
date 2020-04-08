@@ -17,8 +17,8 @@ script:
   - npm t
 env:
   global:
-    PGHOST=localhost
-    PGDATABASE=travis_ci_test
-    PGPORT=5432
-    PGUSER=postgres    
+    - PGHOST=localhost
+    - PGDATABASE=travis_ci_test
+    - PGPORT=5432
+    - PGUSER=postgres    
 
