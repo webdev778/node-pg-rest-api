@@ -10,15 +10,15 @@ node_js:
 before_install:
   - npm i -g npm@^6.13.4
 before_script:
-  - sudo -u postgres psql -c 'create database polycade;' 
-  - sudo -u postgres psql  -d polycade < polycade.dmp
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -d travis_ci_test < polycade.dmp -U postgres
   - npm prune
 script:
   - npm t
 env:
   global:
     PGHOST=localhost
-    PGDATABASE=polycade
+    PGDATABASE=travis_ci_test
     PGPORT=5432
     PGUSER=postgres    
 
