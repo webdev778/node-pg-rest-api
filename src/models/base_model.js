@@ -5,18 +5,9 @@ var _ = require('lodash')
 
 class BaseModel {
   static table
-  static sequence
-
-  // constructor () {
-
-  // }
 
   static tableName () {
     return this.table || pluralize(_.snakeCase(this.name))
-  }
-
-  static sequenceName () {
-    return this.sequence || `${this.tableName()}_id_seq`
   }
 
   static all () {
