@@ -10,7 +10,7 @@ server.use(bodyParser.json())
 var router = require('./config/routes')
 server.use(router)
 
-server.listen(80, () => {
+server.listen(process.env.SERVER_PORT || 4000, () => {
   console.log('server started')
 })
 
