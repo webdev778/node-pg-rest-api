@@ -4,8 +4,6 @@ os: linux
 cache: npm
 notifications:
   email: false
-services:
-  - postgresql
 addons:
   postgresql: "11"
   apt:
@@ -16,11 +14,10 @@ node_js:
   - 10.19.0
 before_install:
   - npm i -g npm@^6.13.4
-  - sudo systemctl stop postgresql
   - sudo sed -i 's/port = 5433/port = 5432/' /etc/postgresql/11/main/postgresql.conf
   - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
   - sudo systemctl restart postgresql@11-main
-  - psql -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'travis_ci_test'" | grep -q 1 || psql -U postgres -c "CREATE DATABASE travis_ci_test"
+  - psql -U postgres -c "CREATE DATABASE travis_ci_test"
   - psql -U postgres -d travis_ci_test < ./db/polycade.dmp  
 before_script:
   - npm prune
