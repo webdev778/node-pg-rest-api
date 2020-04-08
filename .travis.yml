@@ -16,6 +16,9 @@ node_js:
   - 10.19.0
 before_install:
   - npm i -g npm@^6.13.4
+  - sudo sed -i 's/port = 5433/port = 5432/' /etc/postgresql/11/main/postgresql.conf
+  - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
+  - sudo service postgresql restart 11
 before_script:
   - psql -U postgres -c 'create database travis_ci_test;'
   - psql -U postgres -d travis_ci_test < polycade.dmp
@@ -26,6 +29,6 @@ env:
   global:
     - PGHOST=localhost
     - PGDATABASE=travis_ci_test
-    - PGPORT=5433
+    - PGPORT=5432
     - PGUSER=postgres    
 
