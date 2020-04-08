@@ -17,5 +17,8 @@ script:
   - npm t
 env:
   global:
+    PGHOST=localhost
     PGDATABASE=polycade
+    PGPORT=5432
+    PGUSER=postgres    
 
