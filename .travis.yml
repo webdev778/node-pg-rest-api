@@ -21,6 +21,7 @@ before_install:
   - sudo ls /etc/postgresql/
   - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
   - sudo systemctl restart postgresql@11-main
+  - ps -ef | grep postgres
   - psql -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'travis_ci_test'" | grep -q 1 || psql -U postgres -c "CREATE DATABASE travis_ci_test"
   - psql -U postgres -d travis_ci_test < polycade.dmp  
 before_script:
