@@ -16,7 +16,6 @@ node_js:
   - 10.19.0
 before_install:
   - npm i -g npm@^6.13.4
-  - sudo systemctl restart postgresql
 before_script:
   - psql -U postgres -c 'create database travis_ci_test;'
   - psql -U postgres -d travis_ci_test < polycade.dmp
