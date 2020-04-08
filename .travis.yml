@@ -1,7 +1,5 @@
-sudo: false
 language: node_js
-cache:
-  npm
+cache: npm
 notifications:
   email: false
 services: postgresql
