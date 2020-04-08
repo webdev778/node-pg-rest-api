@@ -15,7 +15,7 @@ async function pricingModel (req, resp) {
 
   const pricingId = m.pricing_id
   if (!pricingId) {
-    result = await PricingModel.prices(999)
+    result = await PricingModel.prices(2)
     return resp.json({ default_pricing: result.rows })
   }
 
