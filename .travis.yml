@@ -1,8 +1,16 @@
 language: node_js
+dist: xenial
+os: linux
 cache: npm
 notifications:
   email: false
 services: postgresql
+addons:
+  postgresql: "11"
+  apt:
+    packages:
+    - postgresql-11
+    - postgresql-client-11
 node_js:
   - 10.19.0
 before_install:
