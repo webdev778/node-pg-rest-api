@@ -31,6 +31,6 @@ env:
   global:
     - PGHOST=localhost
     - PGDATABASE=travis_ci_test
-    - PGPORT=5432
+    - PGPORT=5433
     - PGUSER=postgres    
 
