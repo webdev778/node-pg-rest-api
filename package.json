@@ -13,12 +13,19 @@
     "pluralize": "^8.0.0"
   },
   "scripts": {
+    "commit": "git-cz",
     "start": "nodemon --watch ./src --exec babel-node ./src/index.js",
     "watch:test": "npm t -- -w",
     "test": "mocha --recursive --require @babel/register --exit",
     "cover": "nyc npm t",
-    "report": "codecov -f ./coverage/lcov.info"
+    "report": "codecov -f ./coverage/lcov.info",
+    "build": "babel src -D -d dist --delete-dir-on-start"
   },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm t"
+    }
+  },  
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
@@ -39,6 +46,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "ghooks": "^2.0.4",
     "git-cz": "^4.3.1",
     "mocha": "^7.1.1",
     "nyc": "^15.0.1",
