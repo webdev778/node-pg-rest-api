@@ -13,7 +13,6 @@
     "pluralize": "^8.0.0"
   },
   "scripts": {
-    "commit": "git-cz",
     "start": "nodemon --watch ./src --exec babel-node ./src/index.js",
     "watch:test": "npm t -- -w",
     "test": "mocha --recursive --require @babel/register --exit",
@@ -25,7 +24,7 @@
     "ghooks": {
       "pre-commit": "npm t"
     }
-  },  
+  },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
@@ -37,6 +36,7 @@
     "babel-eslint": "^10.1.0",
     "babel-plugin-istanbul": "^6.0.0",
     "chai": "^4.2.0",
+    "codecov": "^3.6.5",
     "core-js": "^3.6.4",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
