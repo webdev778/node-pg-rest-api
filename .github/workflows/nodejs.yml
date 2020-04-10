@@ -36,9 +36,10 @@ jobs:
         which psql
         psql -U postgres -d polycade_test < ./db/polycade.dmp
       env:
-        POSTGRES_HOST: localhost
-        POSTGRES_USER: postgres  
-        POSTGRES_PASSWORD: postgres
+        PGHOST: localhost
+        PGUSER: postgres
+        PGPORT: 5432
+        PGPASSWORD: postgres
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
