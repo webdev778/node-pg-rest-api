@@ -18,21 +18,22 @@ jobs:
       matrix:
         node-version: [10.x]
 
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: polycade_test
+        ports:
+        - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
-    - name: Postgres 11 Setup
-      uses: harmon758/postgresql-action@v1
-      with:
-        postgresql version: '11'
-        postgresql db: 'polycade_test'
-    - run: sudo sed -i 's/port = 5433/port = 5432/' /etc/postgresql/11/main/postgresql.conf
-    - run: sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
-    - run: sudo systemctl restart postgresql@11-main
-    - run: psql -U postgres -d 'polycade_test' < './db/polycade.dmp'
+        node-version: ${{ matrix.node-version }}   
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
