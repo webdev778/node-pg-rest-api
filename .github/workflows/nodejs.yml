@@ -31,7 +31,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Db Migration
-      run: psql -U postgres -d polycade_test < ./db/polycade.dmp
+      run: |
+        sudo chown 777 ./db/polycade.dmp
+        psql -U postgres -d polycade_test < ./db/polycade.dmp
       env:
         POSTGRES_PASSWORD: postgres
     - name: Use Node.js ${{ matrix.node-version }}
