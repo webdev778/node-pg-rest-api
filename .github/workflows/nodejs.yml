@@ -23,7 +23,8 @@ jobs:
         image: postgres:11
         env:
           POSTGRES_USER: postgres
-          POSTGRES_DB: polycade_test
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
         ports:
         - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -35,7 +36,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Import Seed dump file
-      run: psql -U postgres -d 'polycade_test' < './db/polycade.dmp'
+      run: 
+        psql -U postgres -c "CREATE DATABASE polycade_test"
+        psql -U postgres -d 'polycade_test' < './db/polycade.dmp'
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
