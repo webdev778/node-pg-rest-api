@@ -30,13 +30,10 @@ jobs:
         postgresql version: '11'
         postgresql db: 'polycade_test'
     - name: Import Seed db
-      uses: n1ru4l/psql-action@v1
-      with:
-        POSTGRES_PASSWORD: ''
-        POSTGRES_DATABASE: 'polycade_test'
-        DATABASE_DUMP_PATH: './db/polycade.dmp'
+      run: psql -U postgres -d 'polycade_test' < './db/polycade.dmp'
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
       env:
         CI: true
+        DB_NAME: 'polycade_test' 
