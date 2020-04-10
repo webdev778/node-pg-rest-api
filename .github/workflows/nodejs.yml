@@ -36,7 +36,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Import Seed dump file
-      run: 
+      run: |
         psql -U postgres -c "CREATE DATABASE polycade_test"
         psql -U postgres -d 'polycade_test' < './db/polycade.dmp'
     - run: npm ci
