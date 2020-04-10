@@ -29,8 +29,10 @@ jobs:
       with:
         postgresql version: '11'
         postgresql db: 'polycade_test'
-    - name: Import Seed db
-      run: psql -U postgres -d 'polycade_test' < './db/polycade.dmp'
+    - run: sudo sed -i 's/port = 5433/port = 5432/' /etc/postgresql/11/main/postgresql.conf
+    - run: sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
+    - run: sudo systemctl restart postgresql@11-main
+    - run: psql -U postgres -d 'polycade_test' < './db/polycade.dmp'
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
