@@ -33,8 +33,11 @@ jobs:
     - name: Db Migration
       run: |
         sudo chmod 777 ./db/polycade.dmp
+        which psql
         psql -U postgres -d polycade_test < ./db/polycade.dmp
       env:
+        POSTGRES_HOST: localhost
+        POSTGRES_USER: postgres  
         POSTGRES_PASSWORD: postgres
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
