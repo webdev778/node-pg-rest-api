@@ -1,7 +1,7 @@
 ![Polycade.com](https://i.imgur.com/jcvsFKh.png)
 
 ---
-[![codecov](https://codecov.io/gh/webdev778/node-pg-rest-api/branch/master/graph/badge.svg)](https://codecov.io/gh/webdev778/node-pg-rest-api) [![Build Status](https://travis-ci.com/webdev778/node-pg-rest-api.svg?branch=master)](https://travis-ci.com/webdev778/node-pg-rest-api)
+[![codecov](https://codecov.io/gh/webdev778/node-pg-rest-api/branch/master/graph/badge.svg)](https://codecov.io/gh/webdev778/node-pg-rest-api) [![Build Status](https://travis-ci.com/webdev778/node-pg-rest-api.svg?branch=master)](https://travis-ci.com/webdev778/node-pg-rest-api) ![Node.js CI](https://github.com/webdev778/node-pg-rest-api/workflows/Node.js%20CI/badge.svg?branch=master)
 # Polycade Engineering Node.js REST API Challenge
 
 Our apps need to query and store lots of information. We want to make sure that you have a good understanding of JavaScript and Node.js fundamentals. Can you build a simple API that can read data from and write data to a PostgreSQL database with Node.js?
