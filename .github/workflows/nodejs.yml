@@ -32,7 +32,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Db Migration
       run: |
-        sudo chown 777 ./db/polycade.dmp
+        sudo chmod 777 ./db/polycade.dmp
         psql -U postgres -d polycade_test < ./db/polycade.dmp
       env:
         POSTGRES_PASSWORD: postgres
