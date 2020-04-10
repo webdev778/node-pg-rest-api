@@ -30,7 +30,7 @@ jobs:
         postgresql version: '11'
         postgresql db: 'polycade_test'
     - name: Import Seed db
-      uses: n1ru4l/psql-action@v1
+      uses: n1ru4l/psql-import-action@v1
       with:
         POSTGRES_PASSWORD: ''
         POSTGRES_DATABASE: 'polycade_test'
