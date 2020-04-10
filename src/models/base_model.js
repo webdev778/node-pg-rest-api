@@ -7,6 +7,8 @@ class BaseModel {
   static table
 
   static tableName () {
+    let test
+    test = 3
     return this.table || pluralize(_.snakeCase(this.name))
   }
 
